@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+var debug = require('debug')('Start');
+var app = require('../app');
+var fs = require('fs');
+var https = require('https');
+
+// Build App
+app.set('port', process.env.PORT || 3000);
+
+// HTTPS Imports
+var privateKey = fs.readFileSync('./certificates/key.pem');
+var certificate = fs.readFileSync('./certificates/cert.pem');
+var credentials = {key: privateKey, cert: certificate};
+
+var svr = https.createServer(credentials, app);
+
+// Start Server
+svr.listen(app.get('port'), function () {
+    debug('Express server listening on port ' + svr.address().port);
+});
+
+// Web Sockets
+var socket = require('../routes/webSockets')(app, svr);
+

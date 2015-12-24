@@ -1,0 +1,120 @@
+<div class="table-view">
+        <div class="member-container">
+            <div class="member-box" ng-repeat="member in table.members">
+                <div href="#" tooltips tooltip-content="{{ member }}">
+                    <img src="{{table.profPics[member]}}">
+                </div>
+            </div>
+        </div>
+        <div class="tools-container">
+            <div class="tool-box" ng-repeat="tool in tools" ng-click="changeWorkspace(tool.name)" href="#" tooltips
+                 tooltip-content="{{ tool.name }}" tooltip-side="bottom">
+                <img src="{{tool.img}}">
+                </img>
+            </div>
+        </div>
+
+    <div class="workspace">
+        <!--{{tableID}}
+        {{table}}
+        {{workspace}} -->
+        <div ng-show="ws.base" class="workspace_show" style="height:100%;background: url('../img/bg3.png') repeat; float:left; display:table;text-align:center;">&nbsp
+           <span style="display:table-cell; vertical-align: middle; text-align:center; margin: auto; font-size:30px; color: floralwhite;"> 
+              <p> {{table.name}}</p>
+              <p> {{table.subject}}</p>
+                  
+           </span>
+        </div>
+        <div ng-show="ws.solutions" class="workspace_show" style="background: url('../img/wip.png') no-repeat center; height:100%;">
+            &nbsp            
+        </div>
+        <div ng-show="ws.video" class="workspace_show">
+            <div class="clearfix">
+                <div id="fixed-width" style="border-style: groove; margin: 5px; padding: 5px">
+                    <h2>Webconference</h2>
+                    <p>Choose what media you would like to share:</p>
+                    <pretty-radio class="clearfix" value="'screen'" ng-model="conferenceType"
+                                  label="'Desktop'"></pretty-radio>
+                    <pretty-radio class="clearfix" value="'camera'" ng-model="conferenceType"
+                                  label="'Camera'"></pretty-radio>
+                    <button class="btn submit-btn" ng-click="startVC()" ng-hide="vc.active">Start!</button>
+                    <button class="btn submit-btn" ng-click="joinVC()" ng-show="!vc.participant && vc.active">Join!</button>
+                    <button class="btn submit-btn" ng-click="changeVC()" ng-show="vc.participant">Change media</button>
+                    <button class="btn submit-btn" ng-click="disconnectVC()" ng-show="vc.participant">Leave</button>
+
+                    <div class="thumbnail" ng-hide="!vc.participant">
+                        <p>{{the_user}}</p>
+                        <video style="width:100%" ng-src="{{getLocalVideo()}}" autoplay muted></video>
+                    </div>
+                </div>
+                <div id="fluid" class="row-fluid" style="margin: 5px; padding: 5px">
+                    <div class="container">
+                        <div class="row">
+                            <div class="thumbnail peer-thumbnail" ng-repeat="peer in peers">
+                                <p>{{peer.username}}</p>
+                                <video-player class="col-md-4" vid-src="{{peer.stream}}"></video-player>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="ws.files" style="display:inline; height:100%" class="workspace_show">
+            <div class="file_selector">
+                <div class="file_select" ng-repeat="file in objects" ng-click="select_file(file.name)">
+                <file-render data="file"></file-render>
+                </div>
+            </div>
+
+            <div class="file_previewer" >
+                <div class="f_prev" ng-repeat="file in objects | filter:{ selected: true }">
+               <file-preview data="file"></file-preview>
+               </div>
+            </div>
+            <div ngf-select="uploadFiles" ngf-drop="uploadFiles" ng-model="files" ngf-multiple="true"
+                 accept="image/*,audio/*,video/*,application/pdf,text/*"
+                 ng-disabled="disabled" ngf-capture="capture" ngf-drag-over-class="'dragover'"
+                 ngf-validate="validateObj" ngf-allow-dir="allowDir"
+                 class="drop-box ng-pristine ng-valid" ngf-drop-available="dropAvailable" style="background: #F8F8F8;
+                             border-radius: 15px/50px;
+    border: 5px solid black;
+                            width: 20%;
+                            height: 50%;
+                            text-align: center;
+                            float:right;
+                            display: table;" ngf-keep="distinct" ng-model-options="{ updateOn: '' }">
+
+                <span ng-show="dropAvailable" style="  display: table-cell; vertical-align: middle; text-align: center;">                Select File, Drop File or Paste/Drop Image</span>
+            </div>
+            <div style="float:right; width:20%; height:20%;">&nbsp
+            </div>
+            <div class="file_tools">
+                <button><a class="download" download="{{ preview.name }}" ng-href="{{ preview.url }}">Download</a>
+                </button>
+                <button ng-click="publish()">Publish</button>
+                
+            </div>
+        </div>
+        <div ng-show="ws.repository" style="display:inline; height:100%">
+            <div class="repo_selector">
+                <ul>
+                <li ng-repeat="file in repoobjects" ng-click="select_repo_file(file.name)" class="repo_select">
+                    <span>{{ file.name }}</span>
+                </li>
+                </ul>
+            </div>
+            <div class="repo_previewer" >
+                <div class="f_prev" ng-repeat="file in repoobjects | filter:{ selected: true }">
+                    <file-preview data="file"></file-preview>
+               </div>
+               
+            </div>
+            <div style="width:50%; float:right; height:30%;">
+            </div>
+            <div class="file_tools" style="width:50%; height: 40%;">
+                   <button ng-click="addToTable()" ng-hide="repo_preview.in_table">Add To Table</button>
+                   <h2 ng-show="repo_preview.in_table">File exists in table</h2>
+               </div>
+        </div>
+    </div>
+</div>

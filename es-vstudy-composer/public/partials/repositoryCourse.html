@@ -1,0 +1,10 @@
+<div class="container">
+	<h1>Repository for {{course}}</h1>
+	<div id="post-stream">
+		<h4>Subject List</h4>
+		<div class="post" ng-repeat="cadeira in cadeiras  | orderBy:'name'" ng-class-odd="'odd'" ng-class-even="'even'">
+			<a ng-click="toSubject(cadeira.code)">{{cadeira.name}}</a>
+			<small>{{cadeira.code}}</small>
+		</div>
+	</div>
+</div>

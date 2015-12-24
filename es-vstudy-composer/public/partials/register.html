@@ -1,0 +1,123 @@
+<!--register.html-->
+
+<div class="container">
+    <div style="text-align: center">
+        <h2>Register Form</h2>
+    </div>
+    <div>
+        <form  ng-submit="register()">
+            <div class="row form-auth">
+                <p class="text-warning">{{error_message}}</p>
+            </div>
+            <div class="row reg-panel">
+                <div class="reg-panel-left">
+                    <div class="row form-auth">
+                        <input type="username" ng-model="user.username" placeholder="Username" class="form-control"><br>
+                    </div>
+                    <div class="row form-auth">
+                        <input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br>
+                    </div>
+                    <div class="row form-auth" style="text-align:center">
+                        <input type="email" ng-blur="updatePrev()" ng-model="gravemail" placeholder="Gravatar Email" class="form-control"><br>
+                    </div>
+                </div>
+                <div class="reg-panel-right">
+                    <img src="{{profPic}}">
+                </div>
+            </div>
+            <div class="row">
+                <div style="margin-top:4%; margin-bottom: 4%">
+                    <div dropdown-select="courses"
+                         dropdown-model="selectedOptions"
+                         dropdown-item-label="name"
+                         dropdown-onchange="getSubjects(selected)"
+                         dropdown-disabled="dropdownsDisabled">
+                        <span class="selected ng-binding">Select a course</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div ng-show="selectedCourse">
+                    <div class="well">
+                        <h4>My Subjects</h4>
+                        <div  ng-repeat="cadeira in cadeiras" ng-if="$even">
+                            <div class="col-sm-6">
+                                <pretty-checkbox multiple class="clearfix" ng-model="selectedOptions.subjects" value="$index+1" label="cadeiras[$index].name">
+                                </pretty-checkbox>
+                            </div>
+                            <div class="col-sm-6">
+                                <pretty-checkbox multiple class="clearfix" ng-model="selectedOptions.subjects" value="$index+2" label="cadeiras[$index+1].name" ng-if="cadeiras[$index+1].name!=undefined">
+                                </pretty-checkbox>
+                            </div>
+                        </div>
+                        <br><br>
+                        Value: {{selectedOptions.subjects}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div style="text-align: center" class="form-auth">
+                    <input type="submit" value="Register" class="btn btn-primary"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--
+<div class="container">
+    <div>
+        <form  ng-submit="register()">
+            <div class="row form-auth">
+                <h2>Register</h2>
+            </div>
+            <div class="row form-auth">
+                <p class="text-warning">{{error_message}}</p>
+            </div>
+            <div class="row form-auth">
+                <input type="username" ng-model="user.username" placeholder="Username" class="form-control"><br>
+            </div>
+            <div class="row form-auth">
+                <input type="password" ng-model="user.password" placeholder="Password" class="form-control"><br>
+            </div>
+            <div class="row form-auth" style="text-align:center">
+                <input type="email" ng-blur="updatePrev()" ng-model="gravemail" placeholder="Gravatar Email" class="form-control"><br>
+                <img src="{{profPic}}">
+            </div>
+            <div class="row">
+                <div style="margin-top:50px; text-align:center;">
+                    <div dropdown-select="courses"
+                         dropdown-model="selectedOptions"
+                         dropdown-item-label="name"
+                         dropdown-onchange="getSubjects(selected)"
+                         dropdown-disabled="dropdownsDisabled">
+                        <span class="selected ng-binding">Select a course</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-show="selectedCourse">
+                <div class="well">
+                    <h4>My Subjects</h4>
+                    <div  ng-repeat="cadeira in cadeiras" ng-if="$even">
+                        <div class="col-sm-6">
+                            <pretty-checkbox multiple class="clearfix" ng-model="selectedOptions.subjects" value="$index+1" label="cadeiras[$index].name">
+                            </pretty-checkbox>
+                        </div>
+                        <div class="col-sm-6">
+                            <pretty-checkbox multiple class="clearfix" ng-model="selectedOptions.subjects" value="$index+2" label="cadeiras[$index+1].name" ng-if="cadeiras[$index+1].name!=undefined">
+                            </pretty-checkbox>
+                        </div>
+                    </div>
+                    <br><br>
+                    Value: {{selectedOptions.subjects}}
+                </div>
+            </div>
+
+            <div class="row form-auth">
+                <input type="submit" value="Register" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+-->

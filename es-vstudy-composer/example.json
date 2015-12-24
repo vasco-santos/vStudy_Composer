@@ -1,0 +1,30 @@
+{
+	"courses": [
+		{
+			"Name": "Administração Pública",
+			"Code": 10,
+			"cadeiras": [
+			{
+				"Name": "Introdução ao Direito",
+				"CodePACO": 45824
+			},
+			{
+				"Name": "Territorio e População",
+				"CodePACO": 47276
+			}]
+
+		},
+		{
+			"Name": "Engenharia de Computadores e Telemática",
+			"Code": 1,
+			"cadeiras": [
+			{
+				"Name": "Calculo 1",
+				"CodePACO": 45824
+			},
+			{
+				"Name": "Algebra",
+				"CodePACO": 47276
+			}]
+		} ]
+}

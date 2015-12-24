@@ -1,0 +1,40 @@
+
+<div class="table-view">
+    <div class="repo_workspace">
+            <div style="display:inline; height:100%" class="workspace_show">
+                <div class="file_selector">
+                    <div class="file_select" ng-repeat="file in repoobjects" ng-click="select_repo_file(file.name)">
+                    <file-render data="file"></file-render>
+                    </div>
+                </div>
+    
+                <div class="file_previewer" >
+                    <div class="f_prev" ng-repeat="file in repoobjects | filter:{ selected: true }">
+                <file-preview data="file"></file-preview>
+                </div>
+                </div>
+                <div ngf-select="uploadFiles" ngf-drop="uploadFiles" ng-model="files" ngf-multiple="true"
+                    accept="image/*,audio/*,video/*,application/pdf,text/*"
+                    ng-disabled="disabled" ngf-capture="capture" ngf-drag-over-class="'dragover'"
+                    ngf-validate="validateObj" ngf-allow-dir="allowDir"
+                    class="drop-box ng-pristine ng-valid" ngf-drop-available="dropAvailable" style="background: #F8F8F8;
+                                border-radius: 15px/50px;
+        border: 5px solid black;
+                                width: 20%;
+                                height: 50%;
+                                text-align: center;
+                                float:right;
+                                display: table;" ngf-keep="distinct" ng-model-options="{ updateOn: '' }">
+    
+                    <span ng-show="dropAvailable" style="  display: table-cell; vertical-align: middle; text-align: center;">                Select File, Drop File or Paste/Drop Image</span>
+                </div>
+                <div style="float:right; width:20%; height:20%;">&nbsp
+                </div>
+                <div class="file_tools">
+                    <button><a class="download" download="{{ repo_preview.name }}" ng-href="{{ repo_preview.url }}">Download</a>
+                    </button>
+                    
+                </div>
+            </div>
+    </div>       
+</div>

@@ -1,0 +1,11 @@
+<div class="container">
+	<div id="post-stream">
+		<h4>Courses List</h4>
+		<div class="post" ng-repeat="course in courses  | orderBy:'name'" ng-class-odd="'odd'" ng-class-even="'even'">
+			<a ng-click="toCourse(course.name)">{{course.name}}</a>
+			<small>{{course.description}}</small>
+			<small>, Online userss @{{course.created_by}}</small>
+			<small class="pull-right">{{course.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+		</div>
+	</div>
+</div>

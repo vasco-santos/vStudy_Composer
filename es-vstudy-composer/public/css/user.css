@@ -1,0 +1,33 @@
+.userView{
+    margin-left: 10%;
+}
+
+.user-panel-left{
+    float: left;
+    width: 30%;
+}
+
+.user-panel-right{
+    float: left;
+    width: 60%;
+}
+
+.welcomeMessage{
+    margin-bottom: 5%;
+}
+
+.reg-panel{
+    display: inline;
+}
+
+.reg-panel-left{
+    text-align: left;
+    float: left;
+    width: 50%;
+}
+
+.reg-panel-right{
+    text-align: center;
+    float: left;
+    width: 50%;
+}

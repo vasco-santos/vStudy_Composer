@@ -1,0 +1,34 @@
+<div class="container-fluid userView">
+    <div class="text-center welcomeMessage">
+        <h2 class="section-heading">Welcome {{current_user}}!</h2>
+    </div>
+    <div style="display: inline">
+        <div class="user-panel-left">
+            <div style="margin-bottom: 4%">
+                <img src="{{profPic}}">
+            </div>
+            <div style="margin-bottom: 4%">
+                <a ui-sref="editUser">Edit User account</a>
+            </div>
+            <div style="margin-bottom: 4%">
+                <div ng-repeat="course in userCourses">
+                    <label>{{ course.name }}
+                        <input type="checkbox" ng-model="course.show">
+                    </label><br/>
+                </div>
+            </div>
+        </div>
+        <div class="user-panel-right">
+            <div class="libview">
+                <p/>
+                <div ng-repeat="course in userCourses">
+                    <div ng-repeat="table in course.tables" ng-show="course.show">
+                        <div class="panel" href="#" tooltips tooltip-content="Description: {{ table.description }}">
+                            <div my_user class="my_user">
+                            </div> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

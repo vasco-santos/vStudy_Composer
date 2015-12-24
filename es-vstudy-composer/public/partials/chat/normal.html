@@ -1,0 +1,29 @@
+    <div class="row" style="height:100%">
+        <div class="col-md-12" style="background-color:white;height:80%;">
+            <div class="panel panel-default" style="width:100%;height:100%">
+                <div class="panel-heading" id="accordion">
+                    <span class="glyphicon glyphicon-comment"></span> Contacts                 
+                </div>
+                <div class="panel-body">
+                    <ul class="chat">
+                        <div ng-repeat="user in users">
+                          <div ng-if="user != current_user">
+                            <li class="right clearfix">                      
+                            
+                            <div class="chat-body clearfix" ng-click="startchat(user)">
+                                    <div class="header">
+                                        <small class="text-muted"><span class="glyphicon glyphicon-user"/></small>
+                                        <strong class="pull-right primary-font">{{user}}</strong>
+                                    </div>
+                            </div>
+                            </li>
+                          </div>
+                          
+                        </div>
+                    </ul>
+                </div>
+                
+              </div>
+        </div>
+    </div>
+

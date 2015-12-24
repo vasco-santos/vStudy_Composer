@@ -1,0 +1,143 @@
+<!-- Aveiro University
+MIECT - Services Engineering
+    
+    @author: Vasco Santos (64191)
+
+Service Composition for vStudy Application
+-->
+<!DOCTYPE html>
+<html ng-app="vStudyApp" lang="en">
+    <head>
+    <!-- Metadata -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Service Composition for vStudy Application">
+        <meta name="author" content="Vasco Santos">
+        <title>vStudy</title>
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/landing-page.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/table.css">
+        <link rel="stylesheet" href="css/user.css">
+        <link rel="stylesheet" href="css/chat.css">
+        <!-- Dropdown CSS -->
+        <link rel="stylesheet" href="css/angular-dropdowns.css" >
+        <!-- Checkbox CSS -->
+        <link rel="stylesheet" href="css/pretty-checkable.css" >
+        <!-- Highlight CSS -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
+        <!-- Custom Fonts -->
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="css/fonts.css" rel="stylesheet" type="text/css">
+        <!-- Tooltip CSS -->
+        <link rel="stylesheet" href="css/angular-tooltips.css">
+    </head>
+    <body ng-controller="navigationController" class="window">
+        <div >
+        <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top topnav" role="navigation">
+                <div class="container topnav">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        </button>
+                        <a class="navbar-brand" href="#">vStudy</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <p class="navbar-left navbar-text"><a ui-sref="courses">Courses</a></p>
+                        <div class="navbar-left navbar-text dropdown" ng-show="authenticated"><a class="dropdown-toggle" data-toggle="dropdown">Subjects <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        <li ng-repeat="navSubject in navSubjects"><a ng-click="toSubject(navSubject.code)">{{navSubject.name}} - {{navSubject.code}}</a></li>
+                        </ul>
+                        </div>
+                        <p class="navbar-left navbar-text"><a ui-sref="repositoryCourses">Repository</a></p>
+                        <!--<p class="navbar-left navbar-text"><a ui-sref="users">Users</a></p>
+                        <p class="navbar-left navbar-text"><a ui-sref="events">Events</a></p> -->
+                        <p class="navbar-right navbar-text"><a ui-sref="about">About</a></p>
+                        <p class="navbar-right navbar-text" ng-hide="authenticated"><a ui-sref="login">Login</a> or <a ui-sref="register">Register</a></p>
+                        <p class="navbar-right navbar-text" ng-show="authenticated"><a ui-sref="/" ng-click="signout()">Logout</a></p>
+                        <p class="navbar-right navbar-text" ng-show="authenticated">Signed in as <a ui-sref="user">{{current_user}}</a></p>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="chatContainer">
+            <div ui-view="main" ng-class="authenticated ? 'activeChatBar' : 'notActiveChatBar'">
+                <!-- Angular Partials Navigation -->
+            </div>
+            <div ui-view="chatBar" class="chatBarPanel" ng-class="authenticated ? 'chatBar' : 'notChatBar'">
+
+            </div>
+            <div ui-view="chatWindow" class="chatWindowPanel" ng-class="authenticated ? 'chatWindow' : 'notChatWindow'">
+                
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer" style="text-align: center;">
+            <div class="container">
+                <div class="row">
+                    <p>&copy; vStudy 2015</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- MD5 hash funcition -->
+        <script src="http://www.myersdaily.org/joseph/javascript/md5.js"></script>
+        <!-- Video Conference Snippet -->
+        <script src="http://192.168.8.217:4255/snippet.js"></script>
+        <!-- jQuery -->
+        <script src="javascripts/include/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="javascripts/include/bootstrap.min.js"></script>
+        <!-- AngularJS -->
+        <script src="javascripts/include/angular.min.js"></script>
+        <!-- Angular ui-router -->
+        <script src="javascripts/include/angular-ui-router.js"></script>
+        <!-- Angular Resource -->
+        <script src="javascripts/include/angular-resource.js"></script>
+        <!-- Angular Dropdowns -->
+        <script src="javascripts/include/angular-dropdowns.js"></script>
+        <!-- Angular Checkbox -->
+        <script src="javascripts/include/angular-pretty-checkable.js"></script>
+        <!-- Angular Tooltips -->
+        <script src="javascripts/include/angular-tooltips.js"></script>
+        <!-- Angular Socket IO -->
+        <script src="javascripts/include/socket.io.js"></script>
+        <!-- Angular Base64 -->
+        <script src="javascripts/include/angular-utf8-base64.min.js"></script>
+        <!-- Highlight.js -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+        <!-- Angular Highlight -->
+        <script src="javascripts/include/angular-highlightjs.min.js"></script>
+        <!--Angular File Upload -->
+        <script src="javascripts/include/ng-file-upload-shim.min.js"></script>
+        <script src="javascripts/include/ng-file-upload.min.js"></script>
+        <!-- My Scripts -->
+        <script src="javascripts/vStudy.js"></script>
+        <script src="javascripts/routes.js"></script>
+        <script src="javascripts/factory.js"></script>
+        <script src="javascripts/videoPlayer.js"></script>
+        <script src="javascripts/services/authService.js"></script>
+        <script src="javascripts/services/coursesService.js"></script>
+        <script src="javascripts/services/repoService.js"></script>
+        <script src="javascripts/services/tablesService.js"></script>
+        <script src="javascripts/services/fileService.js"></script>
+        <script src="javascripts/services/vcService.js"></script>
+        <script src="javascripts/services/imService.js"></script>
+        <script src="javascripts/services/chatService.js"></script>
+        <script src="javascripts/controllers/chatControllers.js"></script>
+        <script src="javascripts/controllers/userControllers.js"></script>
+        <script src="javascripts/controllers/generalControllers.js"></script>
+        <script src="javascripts/controllers/coursesControllers.js"></script>
+        <script src="javascripts/controllers/repositoryControllers.js"></script>
+        <script src="javascripts/controllers/tablesControllers.js"></script>
+        <!-- My Directives -->
+        <script src="javascripts/directives/snippetdirective.js"></script>
+    </body>
+</html>

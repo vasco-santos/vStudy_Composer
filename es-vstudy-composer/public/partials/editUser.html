@@ -1,0 +1,103 @@
+<div class="container">
+    <div style="text-align: center">
+        <h2>Edit Account</h2>
+    </div>
+    <div class="row reg-panel">
+        <div class="reg-panel-left">
+            Gravatar URL: <input type="email" ng-blur="updatePrev()" ng-model="gravemail" placeholder="{{gravemail}}" class="form-control">
+            <br>
+            <h5>Current subjects:</h5>
+            <div ng-repeat="subject in subjects">
+                <p>{{subject.name}}</p>
+            </div>
+        </div>
+        <div class="reg-panel-right">
+            <img src="{{profPic}}">
+        </div>
+    </div>
+    <div class="row">
+        <div style="margin-top:4%; margin-bottom: 4%">
+            <div dropdown-select="courses"
+                 dropdown-model="selectedOptions"
+                 dropdown-item-label="name"
+                 dropdown-onchange="getSubjects(selected)"
+                 dropdown-disabled="dropdownsDisabled">
+                <span class="selected ng-binding">Select a course</span>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="selectedCourse">
+        <div class="well">
+            <h4>Subjects</h4>
+            <div ng-repeat="cadeira in cadeiras" ng-if="$even">
+                <div class="col-sm-6">
+                    <pretty-checkbox multiple class="clearfix" ng-model="selectedOptions.subjects" value="$index+1"
+                                     label="cadeiras[$index].name">
+                    </pretty-checkbox>
+                </div>
+                <div class="col-sm-6">
+                    <pretty-checkbox multiple class="clearfix" ng-model="selectedOptions.subjects" value="$index+2"
+                                     label="cadeiras[$index+1].name" ng-if="cadeiras[$index+1].name!=undefined">
+                    </pretty-checkbox>
+                </div>
+            </div>
+            <br><br>
+            Value: {{selectedOptions.subjects}}
+        </div>
+    </div>
+    <div style="text-align: center" class="row">
+        <button ng-click="editProfile()">Edit Profile</button>
+    </div>
+</div>
+
+<!--
+<div class="container">
+    <div class="clearfix">
+        <h3>Edit Account</h3>
+        <h5>Change gravatar:</h5>
+        <div class="row form-auth" style="text-align:center">
+            <input type="email" ng-blur="updatePrev()" ng-model="gravemail" placeholder="{{gravemail}}" class="form-control"><br>
+            <img src="{{profPic}}">
+        </div>
+        <h5>Current course: {{courseName}}</h5>
+        <div class="row">
+            <div style="margin-top:50px; text-align:center;">
+                <div dropdown-select="courses"
+                     dropdown-model="selectedOptions"
+                     dropdown-item-label="name"
+                     dropdown-onchange="getSubjects(selected)"
+                     dropdown-disabled="dropdownsDisabled">
+                    <span class="selected ng-binding">Select a course</span>
+                </div>
+            </div>
+        </div>
+        <h5>Current subjects:</h5>
+        <div ng-repeat="subject in subjects">
+            <p>{{subject.name}}</p>
+        </div>
+        <div class="row" ng-show="selectedCourse">
+            <div class="well">
+                <h4>Subjects</h4>
+                <div ng-repeat="cadeira in cadeiras" ng-if="$even">
+                    <div class="col-sm-6">
+                        <pretty-checkbox multiple class="clearfix" ng-model="selectedOptions.subjects" value="$index+1"
+                                         label="cadeiras[$index].name">
+                        </pretty-checkbox>
+                    </div>
+                    <div class="col-sm-6">
+                        <pretty-checkbox multiple class="clearfix" ng-model="selectedOptions.subjects" value="$index+2"
+                                         label="cadeiras[$index+1].name" ng-if="cadeiras[$index+1].name!=undefined">
+                        </pretty-checkbox>
+                    </div>
+                </div>
+                <br><br>
+                Value: {{selectedOptions.subjects}}
+            </div>
+        </div>
+        <h5>Password</h5>
+
+        <button ng-click="editProfile()">Edit Profile</button>
+    </div>
+</div>
+
+-->

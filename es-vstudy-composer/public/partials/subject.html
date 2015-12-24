@@ -1,0 +1,32 @@
+<div class="container">
+    <h1>{{subject}}</h1>
+
+    <div id="post-stream">
+        <h4>Available for:</h4>
+        <div class="post" ng-repeat="course in courses" ng-class-odd="'odd'" ng-class-even="'even'">
+            <p>{{course}}</p>
+        </div>
+    </div>
+
+    <div id="post-stream" ng-show="authenticated">
+        <h4>Available Tables</h4>
+
+        <div class="post" ng-repeat="table in availableTables" ng-class-odd="'odd'" ng-class-even="'even'">
+            <a ng-click="joinTable(table.id)">{{table.name}} - {{table.description}}</a>
+            <small>Created by @{{table.created_by}}</small>
+        </div>
+    </div>
+
+    <div class="clearfix" ng-show="authenticated">
+        <h4>Create new Table</h4>
+
+        <form ng-Submit="addTable()">
+            <h4>New Table</h4>
+            <textarea required class="form-control" maxlength="200" rows="3" placeholder="Table Name"
+                      ng-model="newTable.name"></textarea>
+            <textarea required class="form-control" maxlength="200" rows="3" placeholder="Description"
+                      ng-model="newTable.description"></textarea>
+            <input class="btn submit-btn pull-right" type="submit" value="Add!"/>
+        </form>
+    </div>
+</div>
