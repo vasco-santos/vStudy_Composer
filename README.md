@@ -57,4 +57,4 @@ Then, it is only necessary to run a shell script in order to start the applicati
 
 ## Information
 
-Full Stack Web Application developed for Services Engineering course with [Miguel Vicente](https://github.com/mvicente93).
+Full Stack Web Application developed for Services Engineering course.
